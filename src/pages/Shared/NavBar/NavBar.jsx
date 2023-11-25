@@ -26,7 +26,7 @@ const NavBar = () => {
                 <a>All properties</a>
               </li>
               <li>
-                <a>Dashboard</a>
+                <Link to="dashboard/myProfile">Dashboard</Link>
               </li>
               <li>
                 <Link to='/login'>Login</Link>
@@ -79,10 +79,10 @@ const NavBar = () => {
             user ? <>
             <div className="avatar mr-2">
               <div className="w-24 rounded">
-                <img src={user.photoURL} />
+                <img src={user?.photoURL} />
               </div>
             </div>
-            <span>{user.displayName}</span>
+            <span>{user?.displayName}</span>
             
             <a onClick={handleLogOut} className="btn btn-sm ml-2">Log Out</a>
             </>

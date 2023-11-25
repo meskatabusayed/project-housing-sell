@@ -3,10 +3,13 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Registration = () => {
-    const {createUser} =useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+  
+    const {createUser , updateUserProfile , signInWithGoogle} =useContext(AuthContext);
     const navigate = useNavigate();
 
     const [signUpError, setSignUpError] = useState(" ");
@@ -17,7 +20,8 @@ const Registration = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log( name ,email , password);
+        const photoURL = e.target.photoURL.value;
+        console.log( name ,email , photoURL , password);
 
         if(password.length < 6){
             setSignUpError('Password should be at least 6 Characters or longer');
@@ -41,7 +45,26 @@ const Registration = () => {
         createUser(email , password)
         .then(result => {
             console.log(result.user)
-            e.target.reset();
+            
+            updateUserProfile(name , photoURL)
+            .then(() => {
+              // console.log('user Profile Updated')
+              const userInfo = {
+                name: name,
+                email: email,
+                photoURL: photoURL
+              }
+              axiosPublic.post('/users' , userInfo)
+              .then(res => {
+                if(res.data.insertedId){
+                  console.log('User added to the database')
+                }
+              })
+
+
+              e.target.reset();
+            })
+            .catch(error => console.log(error))
             setSuccess(Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -58,6 +81,38 @@ const Registration = () => {
     )
     }
 
+    
+    const handleGoogleLogIn = () => {
+      signInWithGoogle()
+      .then(result => {
+        const userInfo = {
+              email: result.user?.email,
+              name: result.user?.displayName
+        }
+        axiosPublic.post('/users' , userInfo)
+        .then(res => {
+          console.log(res.data)
+          
+        })
+        const loggedInUser = result.user;
+        console.log(loggedInUser)
+        setSuccess(Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Sign Up Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        }));
+    
+      navigate('/')
+        
+       
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+  }
 
 
 
@@ -122,6 +177,7 @@ const Registration = () => {
             >
               Sign Up
             </button>
+            
           </form>
           {
           
@@ -134,7 +190,11 @@ const Registration = () => {
           <p className="text-center p-2">Already Have An Account? Please<Link to='/login'>
       <button className="btn btn-link">Log in</button>
       </Link> </p>
+        <p className="text-center mb-2">
+        <button  onClick={handleGoogleLogIn} className="btn bg-green-600 text-white">Sign up With Google</button>
+        </p>
         </div>
+       
       </div>
       </div>
     );
