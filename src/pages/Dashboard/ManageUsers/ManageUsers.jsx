@@ -13,7 +13,39 @@ const ManageUsers = () => {
   });
 
   const handleMakeAdmin = user =>{
-    
+    axiosSecure.patch(`users/admin/${user._id}`)
+    .then(res => {
+        console.log(res.data)
+        if(res.data.modifiedCount > 0){
+            refetch();
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `${user.name} is an Admin Now`,
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+    })
+
+  }
+
+  const handleMakeAgent = user => {
+    axiosSecure.patch(`users/agent/${user._id}`)
+    .then(res => {
+        console.log(res.data)
+        if(res.data.modifiedCount > 0){
+            refetch();
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `${user.name} is an Agent Now`,
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+    })
+
   }
  
   const handleDeleteUser = user => {
@@ -31,7 +63,7 @@ const ManageUsers = () => {
           .then((res) => {
               console.log(res.data)
             if(res.data.deletedCount> 0) {
-              refetch();
+                refetch();
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",
@@ -76,10 +108,25 @@ const ManageUsers = () => {
                     <th>{index + 1}</th>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
-                    <td><button onClick={() => handleMakeAdmin(user)} className="btn btn-primary">Admin</button></td>
-                    <td><button className="btn btn-accent">Agent</button></td>
-                    <td></td>
-                    <td><button onClick={() => handleDeleteUser(user._id)} className="btn btn-error">Delete</button></td>
+                    <td>
+                        {
+                            user.role === 'admin' ? 'Admin' : <button onClick={() => handleMakeAdmin(user)} className="btn btn-primary">Admin</button>
+                        }
+                    </td>
+
+                    <td>
+                        {
+                            user.role === 'agent' ? 'Agent' : <button onClick={() => handleMakeAgent(user)} className="btn btn-accent">Agent</button>
+                        }
+                    </td>
+
+                    <td>
+                        {
+                            user.role === 'agent' && <button className="btn btn-warning">Fraud</button>
+                        }
+                    </td>
+
+                    <td><button onClick={() => handleDeleteUser(user)} className="btn btn-error">Delete</button></td>
                   </tr>)
             }
             
