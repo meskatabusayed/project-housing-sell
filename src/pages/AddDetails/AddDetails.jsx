@@ -1,9 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import Review from "./Review";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+
 
 const AddDetails = () => {
   const houseDetails = useLoaderData();
+  const {user} = useContext(AuthContext);
   console.log(houseDetails);
   const {
     _id,
@@ -16,12 +20,13 @@ const AddDetails = () => {
     propertyTitle,
   } = houseDetails || {};
 
-  const handleAddReview = (event) => {
+  const handleAddReview = event => {
     event.preventDefault();
     const form = event.target;
     const propertyTitle  = form.propertyTitle.value;
+    const email = form.email.value;
     const review = form.review.value;
-    const newReview = { review  , propertyTitle};
+   const newReview = { review  , propertyTitle , email};
     console.log(newReview);
     form.reset();
     fetch(`http://localhost:5000/reviews`, {
@@ -73,6 +78,18 @@ const AddDetails = () => {
                         type="text"
                         name="propertyTitle"
                         value={ propertyTitle}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={ user.email}
                         readOnly
                         className="w-full border rounded py-2 px-3"
                       />

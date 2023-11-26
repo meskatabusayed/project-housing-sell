@@ -11,6 +11,10 @@ import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import AddDetails from "../pages/AddDetails/AddDetails";
 import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AgentProfile from "../pages/Dashboard/AgentProfile/AgentProfile";
+import AddProperty from "../pages/Dashboard/Agent/AddProperty/AddProperty";
+import MyAddedProperties from "../pages/Dashboard/Agent/MyAddedProperties/MyAddedProperties";
+import UpdateProperty from "../pages/Dashboard/Agent/UpdateProperty/UpdateProperty";
 
 
  export const router = createBrowserRouter([
@@ -47,6 +51,26 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
           path: 'myProfile',
           element: <MyProfile></MyProfile>
         },
+        // Agent Rouents
+        {
+          path:'agentProfile',
+          element: <AgentProfile></AgentProfile>
+        },
+        {
+          path: 'addProperty',
+          element: <AddProperty></AddProperty>
+        },
+        {
+          path: 'myAddedProperties',
+          element: <MyAddedProperties></MyAddedProperties>
+        },
+        {
+          path: 'updateProperty/:id',
+          element: <UpdateProperty></UpdateProperty>,
+          loader: ({params}) => fetch(`http://localhost:5000/adds/${params.id}`)
+        },
+
+
         // Admin Routes
         {
           path: 'manageUsers',

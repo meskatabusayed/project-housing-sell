@@ -26,7 +26,7 @@ const NavBar = () => {
                 <a>All properties</a>
               </li>
               <li>
-                <Link to="dashboard/myProfile">Dashboard</Link>
+                <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
                 <Link to='/login'>Login</Link>

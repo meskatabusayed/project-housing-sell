@@ -1,12 +1,25 @@
 import {  Outlet } from "react-router-dom";
 import UserDashboard from "./DashboardNavbar/UserDashboard";
-import { useState } from "react";
+// import {   useState } from "react";
 import AgentDashboard from "./DashboardNavbar/AgentDashboard";
 import AdminDashboard from "./DashboardNavbar/AdminDashboard";
+import useAdmin from "../hooks/useAdmin";
+import useAgent from "../hooks/useAgent";
+
+
+
+
 
 
 const Dashboard = () => {
-    const [userRole, setUserRole] = useState('admin');
+    const [isAdmin] = useAdmin();
+    const [isAgent] = useAgent();
+   
+   
+    // const [userRole, setUserRole] = useState([]);
+
+    
+
     
    
 
@@ -14,9 +27,20 @@ const Dashboard = () => {
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-green-600">
-                {userRole === 'user' && <UserDashboard></UserDashboard>}
-                {userRole === 'agent' && <AgentDashboard></AgentDashboard>}
-                {userRole === 'admin' && <AdminDashboard></AdminDashboard>}
+                {
+                    isAdmin ?
+                    <AdminDashboard></AdminDashboard>
+                    : isAgent ?
+                    <AgentDashboard></AgentDashboard>
+                    : <UserDashboard></UserDashboard>
+                }
+
+
+
+                {/* {isRole == !role  && <UserDashboard></UserDashboard>} 
+                 {userRole === 'agent' && <AgentDashboard></AgentDashboard>}
+                {isRole && <AdminDashboard></AdminDashboard>} */}
+              
             </div>
             <div className="flex-1">
                 <Outlet></Outlet>
