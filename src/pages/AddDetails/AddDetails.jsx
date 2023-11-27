@@ -1,13 +1,18 @@
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import Review from "./Review";
-import { useContext } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import axios from "axios";
 
 
 const AddDetails = () => {
+  
+  
   const houseDetails = useLoaderData();
   const {user} = useContext(AuthContext);
+  
+  
   console.log(houseDetails);
   const {
     _id,
@@ -42,6 +47,40 @@ const AddDetails = () => {
       });
   };
 
+
+
+  const handleAddWish = event => {
+    event.preventDefault();
+    const form = event.target;
+    const propertyTitle  = form.propertyTitle.value;
+    const propertyImage  = form.propertyImage.value;
+    const propertyLocation  = form.propertyLocation.value;
+    const agentName  = form.agentName.value;
+    const email = form.email.value;
+    const verificationStatus = form.verificationStatus.value;
+    const priceRange = form.priceRange.value;
+    const myWish = form.myWish.value;
+   const newWish = { verificationStatus , propertyTitle , propertyImage , propertyLocation , agentName , email , priceRange , myWish};
+    console.log(newWish);
+    
+    fetch(`http://localhost:5000/wishes`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newWish),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+   
+      
+  }
+
+
+
+
   return (
     <div>
       <h2 className="text-3xl text-center font-extrabold my-10">Details</h2>
@@ -53,7 +92,150 @@ const AddDetails = () => {
             <p className="font-bold">Price Range : ${priceRange}</p>
             <p className="font-bold">Agent Name : {agentName}</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Add to wishlist</button>
+              {/* Open the modal using document.getElementById('ID').showModal() method */}
+              <button
+                className="btn btn-primary"
+                onClick={() =>
+                  document.getElementById("my_modal_1").showModal()
+                }
+              >
+                Add to Wishlist
+              </button>
+              <dialog
+                id="my_modal_1"
+                className="modal modal-bottom sm:modal-middle"
+              >
+                <div className="modal-box">
+                  <h3 className="font-bold text-lg"> </h3>
+                  <form onSubmit={handleAddWish}>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="propertyTitle"
+                        value={ propertyTitle}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="propertyImage"
+                        value={ propertyImage}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="propertyLocation"
+                        value={ propertyLocation}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="agentName"
+                        value={agentName}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="verificationStatus"
+                        value={verificationStatus}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="priceRange"
+                        value={priceRange}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+
+
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={ user.email}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="myWish"
+                        value='wish'
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+                   
+                    <div>
+                      <button
+                        type="submit"
+                        className="w-full bg-blue-500 text-white rounded py-2 px-4 hover:bg-blue-700"
+                      >
+                        Add to Wishlist
+                      </button>
+                    </div>
+                  </form>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      {/* if there is a button in form, it will close the modal */}
+                      <button className="btn">Close</button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+
+
+
+                <div>
+
               {/* Open the modal using document.getElementById('ID').showModal() method */}
               <button
                 className="btn btn-primary"
@@ -120,6 +302,7 @@ const AddDetails = () => {
                   </div>
                 </div>
               </dialog>
+              </div>
             </div>
           </div>
         </div>

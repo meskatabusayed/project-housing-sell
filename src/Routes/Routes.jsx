@@ -15,6 +15,15 @@ import AgentProfile from "../pages/Dashboard/AgentProfile/AgentProfile";
 import AddProperty from "../pages/Dashboard/Agent/AddProperty/AddProperty";
 import MyAddedProperties from "../pages/Dashboard/Agent/MyAddedProperties/MyAddedProperties";
 import UpdateProperty from "../pages/Dashboard/Agent/UpdateProperty/UpdateProperty";
+import WishList from "../pages/Dashboard/UserDashboard/WishList/WishList";
+import OfferProperty from "../pages/Dashboard/UserDashboard/WishList/OfferProperty/OfferProperty";
+import UserBought from "../pages/Dashboard/UserDashboard/UserBought/UserBought";
+import MyReviews from "../pages/Dashboard/UserDashboard/MyReviews/MyReviews";
+import RequestedProperties from "../pages/Dashboard/Agent/RequestedProperties/RequestedProperties";
+import Payment from "../pages/Dashboard/UserDashboard/Payment/Payment";
+import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile";
+import ManageProperties from "../pages/Dashboard/Admin/ManageProperties/ManageProperties";
+import ManageReview from "../pages/Dashboard/Admin/ManageReview/ManageReview";
 
 
  export const router = createBrowserRouter([
@@ -51,6 +60,27 @@ import UpdateProperty from "../pages/Dashboard/Agent/UpdateProperty/UpdateProper
           path: 'myProfile',
           element: <MyProfile></MyProfile>
         },
+        {
+          path: 'wishList',
+          element: <WishList></WishList>
+        },
+        {
+          path: 'offerProperty/:id',
+          element: <OfferProperty></OfferProperty>,
+          loader:  ({params}) => fetch(`http://localhost:5000/wish/${params.id}`)
+        },
+        {
+          path: 'myBought',
+          element: <UserBought></UserBought>
+        },
+        {
+          path: 'payment',
+          element: <Payment></Payment>
+        },
+        {
+          path: 'myReviews',
+          element: <MyReviews></MyReviews>
+        },
         // Agent Rouents
         {
           path:'agentProfile',
@@ -69,12 +99,27 @@ import UpdateProperty from "../pages/Dashboard/Agent/UpdateProperty/UpdateProper
           element: <UpdateProperty></UpdateProperty>,
           loader: ({params}) => fetch(`http://localhost:5000/adds/${params.id}`)
         },
-
+        {
+          path: 'requestedProperties',
+          element: <RequestedProperties></RequestedProperties>
+        },
 
         // Admin Routes
         {
           path: 'manageUsers',
           element: <ManageUsers></ManageUsers>
+        },
+        {
+          path: 'adminProfile',
+          element: <AdminProfile></AdminProfile>
+        },
+        {
+          path: 'manageProperties',
+          element: <ManageProperties></ManageProperties>
+        },
+        {
+          path: 'manageReviews',
+          element: <ManageReview></ManageReview>
         }
       ]
     }
