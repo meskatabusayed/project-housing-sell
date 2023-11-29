@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const ErrorPage = () => {
   return (
     <div>
+      <h2>Page Not Found</h2>
       <div className="flex justify-center items-center">
         <img
           className="w-[500px] mt-20"
