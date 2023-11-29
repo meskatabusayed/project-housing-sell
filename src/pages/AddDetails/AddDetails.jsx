@@ -95,7 +95,7 @@ const AddDetails = () => {
 
   return (
     <div>
-      <h2 className="text-3xl text-center font-extrabold my-10">Details</h2>
+      <h2 className="text-3xl text-center font-extrabold my-10">Add Details</h2>
       <div className="flex justify-center items-center">
         <div className="card w-96 bg-base-100 shadow-xl">
           <div className="card-body">
