@@ -11,7 +11,7 @@ const WishList = () => {
   
     const [myWishList, setMyWishList] = useState([]);
 
-    const url = `http://localhost:5000/wish?email=${user.email}`;
+    const url = `https://meskat-ph-assign-12-server.vercel.app/wish?email=${user.email}`;
 
     const { data: wish = []  } = useQuery({
         queryKey: [url],
@@ -33,11 +33,11 @@ const WishList = () => {
                     myWishList.map(wish => <div key={wish._id} className="card card-compact w-96 bg-base-100 shadow-xl">
                     <figure><img src={wish.propertyImage} alt="Shoes" /></figure>
                     <div className="card-body">
-                      <h2 className="card-title">{wish.propertyTitle}</h2>
-                      <p>{wish.propertyLocation}</p>
-                      <p>{wish.agentName}</p>
-                      <p>{wish.propertyTitle}</p>
-                      <p>{wish.priceRange}</p>
+                      <h2 className="card-title">Property Title : {wish.propertyTitle}</h2>
+                      <p>Property Location :{wish.propertyLocation}</p>
+                      <p>Agent Name : {wish.agentName}</p>
+                      <p>Status : {wish.verificationStatus}</p>
+                      <p>Price Range : {wish.minPrice} - {wish.maxPrice}</p>
                       <div className="card-actions justify-end">
                         <Link to={`/dashboard/offerProperty/${wish._id}`}> <button className="btn btn-primary">Make an offer</button> </Link> 
                         <button className="btn btn-primary">Remove</button>

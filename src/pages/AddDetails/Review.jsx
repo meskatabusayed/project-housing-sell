@@ -8,7 +8,7 @@ const Review = ({propertyTitle}) => {
     
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://meskat-ph-assign-12-server.vercel.app/reviews')
         .then(res =>res.json())
         .then(data => {
             setReview(data);

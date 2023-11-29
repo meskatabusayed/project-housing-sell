@@ -1,7 +1,9 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { AuthContext } from "../../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const CheckOutForm = () => {
@@ -9,8 +11,8 @@ const CheckOutForm = () => {
     const [clientSecret , setClientSecret] = useState(' ');
     const stripe = useStripe();
     const elements = useElements();
-    const axiosPublic = useAxiosPublic()
-
+    // const axiosPublic = useAxiosPublic();
+    // const {user} = useContext(AuthContext);
     
     // const {refetch , data: buys = [] }  = useQuery({
     //     queryKey: ['buys'],
@@ -20,12 +22,15 @@ const CheckOutForm = () => {
     //     }
     // })
 
-    // const totalPrice = buys.reduce( (total , item) => total + item.amount , 0);
+    // const findAmount = buys?.find(data => data.buyerEmail === user.email);
 
-    // console.log();
+    // console.log(findAmount?.amount);
+    // const totalPrice = parseInt(findAmount?.amount);
 
+    
+    
     // useEffect( () => {
-    //     axiosPublic.post('/create-payment-intent' , , {price: totalPrice})
+    //     axiosPublic.post('/create-payment-intent' , {price: totalPrice})
     //    .then(res => {
     //     console.log(res.data.clientSecret)
     //     setClientSecret(res.data.clientSecret);
@@ -59,7 +64,33 @@ const CheckOutForm = () => {
         else{
             console.log('payment method' , paymentMethod)
             setError( ' ' );
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Payment has been done",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            
         }
+
+        // const { paymentIntent , error: confirmError } = await stripe.confirmCardPayment(clientSecret , {
+        //     payment_method: {
+        //         card: card , 
+        //         billing_details: {
+        //             email: user?.email  || 'anonymous',
+        //             name: user?.displayName || 'anonymous'
+
+        //         }
+        //     }
+        // })
+
+        // if(confirmError){
+        //     console.log('confirm error')
+        // }
+        // else{
+        //     console.log('payment intent' , paymentIntent)
+        // }
 
 
     }

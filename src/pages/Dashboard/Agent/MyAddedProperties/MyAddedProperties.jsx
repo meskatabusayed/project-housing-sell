@@ -11,7 +11,7 @@ const MyAddedProperties = () => {
   const axiosPublic = useAxiosPublic();
   
   const [myProperties, setMyProperties] = useState([]);
-  const url = `http://localhost:5000/adds?agentEmail=${user.email}`;
+  const url = `https://meskat-ph-assign-12-server.vercel.app/adds?agentEmail=${user.email}`;
 
 //   useEffect(() => {
 //     axios.get(url).then((res) => {

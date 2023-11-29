@@ -10,7 +10,7 @@ const AddDetails = () => {
   
   
   const houseDetails = useLoaderData();
-  const {user} = useContext(AuthContext);
+  const {user } = useContext(AuthContext);
   
   
   console.log(houseDetails);
@@ -18,7 +18,8 @@ const AddDetails = () => {
     _id,
     propertyImage,
     propertyLocation,
-    priceRange,
+    minPrice,
+    maxPrice,
     verificationStatus,
     agentName,
     description,
@@ -31,10 +32,11 @@ const AddDetails = () => {
     const propertyTitle  = form.propertyTitle.value;
     const email = form.email.value;
     const review = form.review.value;
-   const newReview = { review  , propertyTitle , email};
+    const ReviewerName = form.ReviewerName.value;
+   const newReview = { review  , propertyTitle , email , ReviewerName};
     console.log(newReview);
     form.reset();
-    fetch(`http://localhost:5000/reviews`, {
+    fetch(`https://meskat-ph-assign-12-server.vercel.app/reviews`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -43,6 +45,7 @@ const AddDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        
         console.log(data);
       });
   };
@@ -58,12 +61,13 @@ const AddDetails = () => {
     const agentName  = form.agentName.value;
     const email = form.email.value;
     const verificationStatus = form.verificationStatus.value;
-    const priceRange = form.priceRange.value;
+    const minPrice = form.minPrice.value;
+    const maxPrice = form.maxPrice.value;
     const myWish = form.myWish.value;
-   const newWish = { verificationStatus , propertyTitle , propertyImage , propertyLocation , agentName , email , priceRange , myWish};
+   const newWish = { verificationStatus , propertyTitle , propertyImage , propertyLocation , agentName , email , minPrice , maxPrice , myWish};
     console.log(newWish);
     
-    fetch(`http://localhost:5000/wishes`, {
+    fetch(`https://meskat-ph-assign-12-server.vercel.app/wishes`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -72,7 +76,15 @@ const AddDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        
         console.log(data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Added Successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
       });
    
       
@@ -89,7 +101,7 @@ const AddDetails = () => {
           <div className="card-body">
             <h2 className="card-title">Property Title : {propertyTitle}</h2>
             <p className="font-bold">Description : {description}</p>
-            <p className="font-bold">Price Range : ${priceRange}</p>
+            <p className="font-bold">Price Range : ${minPrice} - {maxPrice}</p>
             <p className="font-bold">Agent Name : {agentName}</p>
             <div className="card-actions justify-end">
               {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -180,12 +192,27 @@ const AddDetails = () => {
                       </label>
                       <input
                         type="text"
-                        name="priceRange"
-                        value={priceRange}
+                        name="minPrice"
+                        value={minPrice}
                         readOnly
                         className="w-full border rounded py-2 px-3"
                       />
                     </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="maxPrice"
+                        value={maxPrice}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+
+
 
 
 
@@ -260,6 +287,18 @@ const AddDetails = () => {
                         type="text"
                         name="propertyTitle"
                         value={ propertyTitle}
+                        readOnly
+                        className="w-full border rounded py-2 px-3"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600">
+                        
+                      </label>
+                      <input
+                        type="text"
+                        name="ReviewerName"
+                        value={ user.displayName}
                         readOnly
                         className="w-full border rounded py-2 px-3"
                       />

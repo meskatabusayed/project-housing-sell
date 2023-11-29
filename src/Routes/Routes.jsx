@@ -24,12 +24,16 @@ import Payment from "../pages/Dashboard/UserDashboard/Payment/Payment";
 import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile";
 import ManageProperties from "../pages/Dashboard/Admin/ManageProperties/ManageProperties";
 import ManageReview from "../pages/Dashboard/Admin/ManageReview/ManageReview";
+import AllProperties from "../pages/AllProperties/AllProperties";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import MySoldProperties from "../pages/Dashboard/Agent/MySoldProperties/MySoldProperties";
 
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
       {
             path: '/',
@@ -38,8 +42,12 @@ import ManageReview from "../pages/Dashboard/Admin/ManageReview/ManageReview";
       {
         path: '/details/:id',
         element: <PrivateRoute><AddDetails></AddDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/add/${params.id}`)
+        loader: ({params}) => fetch(`https://meskat-ph-assign-12-server.vercel.app/add/${params.id}`)
 
+      },
+      {
+        path: 'allProperties',
+        element: <PrivateRoute><AllProperties></AllProperties></PrivateRoute>
       },
       {
         path: 'login',
@@ -67,7 +75,7 @@ import ManageReview from "../pages/Dashboard/Admin/ManageReview/ManageReview";
         {
           path: 'offerProperty/:id',
           element: <OfferProperty></OfferProperty>,
-          loader:  ({params}) => fetch(`http://localhost:5000/wish/${params.id}`)
+          loader:  ({params}) => fetch(`https://meskat-ph-assign-12-server.vercel.app/wish/${params.id}`)
         },
         {
           path: 'myBought',
@@ -97,11 +105,15 @@ import ManageReview from "../pages/Dashboard/Admin/ManageReview/ManageReview";
         {
           path: 'updateProperty/:id',
           element: <UpdateProperty></UpdateProperty>,
-          loader: ({params}) => fetch(`http://localhost:5000/adds/${params.id}`)
+          loader: ({params}) => fetch(`https://meskat-ph-assign-12-server.vercel.app/adds/${params.id}`)
         },
         {
           path: 'requestedProperties',
           element: <RequestedProperties></RequestedProperties>
+        },
+        {
+          path: 'mySoldProperties',
+          element: <MySoldProperties></MySoldProperties>
         },
 
         // Admin Routes

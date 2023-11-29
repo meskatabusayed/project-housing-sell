@@ -11,7 +11,7 @@ const Testimonials = () => {
   const [allReviews, setAllReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch("https://meskat-ph-assign-12-server.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => setAllReviews(data));
   }, []);
@@ -36,6 +36,9 @@ const Testimonials = () => {
                 <p>{review.review}</p>
                 <h1 className="text-2xl text-orange-400 text-center">
                   {review.ReviewerName}
+                </h1>
+                <h1 className="text-2xl text-green-600 text-center">
+                  {review.propertyTitle}
                 </h1>
               </div>
             </SwiperSlide>

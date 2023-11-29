@@ -8,7 +8,7 @@ const useAdd = () => {
     // const [loading , setLoading] = useState(true);
     
     // useEffect(() => {
-    //     fetch('http://localhost:5000/add')
+    //     fetch('https://meskat-ph-assign-12-server.vercel.app/add')
     //     .then(res =>res.json())
     //     .then(data => {
     //         setAdd(data);

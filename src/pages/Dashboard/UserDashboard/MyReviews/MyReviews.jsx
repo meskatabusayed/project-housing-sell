@@ -14,7 +14,7 @@ const MyReviews = () => {
   
     const [myReviews, setMyReviews] = useState([]);
 
-    const url = `http://localhost:5000/review?email=${user.email}`;
+    const url = `https://meskat-ph-assign-12-server.vercel.app/review?email=${user.email}`;
 
     const { data: review = [] , refetch } = useQuery({
         queryKey: [url],
@@ -60,7 +60,7 @@ const MyReviews = () => {
     return (
         <div>
             <h2 className="text-3xl my-10 font-extrabold text-center">Reviews</h2>
-            {
+            {/* {
                 myReviews.map((myR , index) => <div className="flex my-5  justify-center items-center" key={myR._id}>
                     
                     <div>
@@ -71,6 +71,19 @@ const MyReviews = () => {
                     </div>
                 
                 </div>)
+            } */}
+            {
+                myReviews.map(myR => <div key={myR._id} className="card w-96 bg-base-100 shadow-xl">
+                <div className="card-body">
+                  <h2 className="card-title">Property Title: 
+                  {myR.propertyTitle}</h2>
+                  <p>Reviewer Name :{myR.ReviewerName}</p>
+                  <p>Name : {myR.review}</p>
+                  <div className="card-actions justify-end">
+                    <button onClick={() => handleDeleteReview(myR)} className="btn btn-primary">Delete</button>
+                  </div>
+                </div>
+              </div>)
             }
         </div>
     );

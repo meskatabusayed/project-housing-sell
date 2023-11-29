@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useState } from "react";
 import axios from "axios";
+import { buttonBaseClasses } from "@mui/material";
 
 
 const RequestedProperties = () => {
@@ -23,7 +24,7 @@ const RequestedProperties = () => {
     
        setStatus('accept')
         const resultStatus = { status };
-        axios.patch(`http://localhost:5000/buys/${item._id}` , resultStatus)
+        axios.patch(`https://meskat-ph-assign-12-server.vercel.app/buys/${item._id}` , resultStatus)
           .then((data) => {
             console.log(data.data);
             
@@ -34,7 +35,7 @@ const RequestedProperties = () => {
   const handleReject = (item) =>{
     setStatus('reject')
         const resultStatus = { status };
-        axios.patch(`http://localhost:5000/buys/${item._id}` , resultStatus)
+        axios.patch(`https://meskat-ph-assign-12-server.vercel.app/buys/${item._id}` , resultStatus)
           .then((data) => {
             console.log(data.data);
             
@@ -61,6 +62,7 @@ const RequestedProperties = () => {
               <th>buyer email</th>
               <th>buyer name</th>
               <th>offered price</th>
+              <th>status</th>
               <th>Accept</th>
               <th>Reject</th>
             </tr>
@@ -74,17 +76,17 @@ const RequestedProperties = () => {
                     <td>{item.buyerEmail}</td>
                     <td>{item.buyerName}</td>
                     <td>${item.amount}</td>
-
+                    <td>{item.status ? item.status : 'pending'}</td>
                     <td>
-                    <button onClick={() =>
+                      {item.status ? <button disabled className="btn btn-success">Accept</button> : <button onClick={() =>
                           handleAccept(item)
-                        } className="btn btn-success">Accept</button> 
+                        } className="btn btn-success">Accept</button> } 
                     </td>
 
                     <td>
-                    <button onClick={() =>
+                    {item.status ? <button disabled className="btn btn-error">Reject</button> : <button onClick={() =>
                           handleReject(item)
-                        } className="btn btn-error">Reject</button> 
+                        } className="btn btn-error">Reject</button> }
                     </td>
 
                    

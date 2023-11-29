@@ -40,7 +40,7 @@ const OfferProperty = () => {
          const newBuy = { agentName , propertyTitle ,  propertyLocation ,  date ,  buyerEmail , amount , buyerName , propertyImage};
           console.log(newBuy);
           
-          fetch(`http://localhost:5000/buys`, {
+          fetch(`https://meskat-ph-assign-12-server.vercel.app/buys`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

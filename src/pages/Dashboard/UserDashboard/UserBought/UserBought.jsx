@@ -12,7 +12,7 @@ const UserBought = () => {
 
 
 
-  const url = `http://localhost:5000/buy?buyerEmail=${user.email}`;
+  const url = `https://meskat-ph-assign-12-server.vercel.app/buy?buyerEmail=${user.email}`;
 
     const { data: buy = [] } = useQuery({
         queryKey: [url],
