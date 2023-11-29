@@ -5,30 +5,26 @@
 
 <!-- About Project  5 points -->
 
-.Real estate  Platform:
+.User-Friendly Dashboards:
 
-PH Building is a dedicated job posting platform where employers can post job listings for various positions and industries.
-Employers can create detailed job descriptions, specify requirements, and set application deadlines.
+Users should be able to easily access and manage their information, preferences, and activities through the respective dashboards.
 
-.sell post System:
+.Property Search System:
 
-Ph Building offers a unique feature that allows job seekers to submit bids for specific projects or freelance opportunities posted by employers.
-Employers can evaluate bids, communicate with potential candidates, and make hiring decisions directly on the platform.
+Users should be able to search for properties based on the property titlee. The search results should be presented in a visually appealing and informative manner, with details and images for each property.
 
-. User Accounts:
+. Secure  User Authentication:
 
-Jobify includes a robust user account system with login and registration functionality.
-Users can set up personalized accounts to save job preferences, track application history, and receive email notifications for relevant job listings or bid responses.
+Prioritize the security of user accounts by implementing secure login and signup processes.Ensure a  Secure and straightforward signup process to encourage user registrations.
 
 
-.Update Job Postings:
-Employers can log in to their accounts and access a dashboard where they can view all their active job listings.
-From the dashboard, they can select a specific job posting they wish to update.
-The system allows them to edit job details, such as the job description, requirements, or application deadline.
-Employers can save the updated information, and the changes will be reflected in the job listing.
 
-.Delete Job Postings:
-Employers can also access the same dashboard to view their active job listings.
-They have the option to delete job postings that are no longer relevant or have been filled.
-A confirmation prompt can ensure that they intend to delete the job posting.
-Once confirmed, the job listing is removed from the platform.
+
+.Update  Postings for agent :
+
+Provide agents with a user-friendly interface within their dashboard where they can easily manage and update property listings. Include tools for adding new listings, editing existing ones, and removing properties that are no longer available. Ensure that the process is straightforward to encourage agents to keep their listings up to date.
+
+
+.Admin Dashboard:
+
+admin dashboard should provide a comprehensive overview of the platform's activities. Admins should have the ability to manage user accounts, monitor agent activities, analyze user engagement. 
