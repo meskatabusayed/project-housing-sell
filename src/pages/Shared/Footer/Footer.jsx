@@ -5,9 +5,9 @@ const Footer = () => {
         
         <p className="font-bold">
          PH Housing Ltd. <br />
-          Providing building since 2023
+          Providing building since 2022 , 
         </p>
-        <p>Copyright © 2023 - All right reserved</p>
+        <p>The Copyright © 2023 - All right reserved</p>
       </aside>
       <nav>
         <div className="grid grid-flow-col gap-4">
