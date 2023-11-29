@@ -7,7 +7,7 @@
 
 .User-Friendly Dashboards:
 
-Users should be able to easily access and manage their information, preferences, and activities through the respective dashboards.
+Users should be able to easily access and manage their information,  through the respective dashboards.
 
 .Property Search System:
 
