@@ -75,7 +75,7 @@ const OfferProperty = () => {
       <div className="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex items-center justify-center">
         <div className="bg-white p-8 rounded shadow-lg w-96 my-5">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            Offer Property
+            Offer Property section
           </h2>
           <form onSubmit={handleAddOffer} className="space-y-4">
 
