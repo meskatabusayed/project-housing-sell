@@ -19,7 +19,7 @@ const Testimonials = () => {
   return (
     <div>
       <h2 className="text-3xl text-center font-extrabold mt-10">
-        Latest User review
+        Latest User review section
       </h2>
       <div className="mt-5 mb-10">
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
