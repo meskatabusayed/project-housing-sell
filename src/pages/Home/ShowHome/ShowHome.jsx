@@ -5,7 +5,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 export default function ShowHome() {
   return (
     <div>
-        <h2 className='text-3xl text-center font-extrabold'>Lovely Home Photos</h2>
+        <h2 className='text-3xl text-center font-extrabold'>Lovely Home Photos section</h2>
    <div className='flex justify-center items-center my-5'>
     
      <ImageList sx={{ width: 500, height: 450  }} cols={3} rowHeight={164}>
