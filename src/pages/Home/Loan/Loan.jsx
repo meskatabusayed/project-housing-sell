@@ -18,7 +18,7 @@ export default function Loan() {
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' , margin: 10 }}>
           <Typography component="div" variant="h3">
-            Need a home loan? Get pre-approved
+            Need a home loan? Get pre-approved Now
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
           Find a lender who can offer competitive mortgage rates and help you with pre-approval.
