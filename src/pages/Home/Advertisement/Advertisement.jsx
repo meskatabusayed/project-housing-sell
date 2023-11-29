@@ -7,7 +7,7 @@ const Advertisement = () => {
     
     return (
         <div>
-            <h2 className='text-3xl text-center font-extrabold my-20'>Advertisement Section</h2>
+            <h2 className='text-3xl text-center font-extrabold my-20'>Our Advertisement Section</h2>
             
             <div className="flex items-center justify-center">
            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
