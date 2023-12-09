@@ -1,8 +1,11 @@
-***Client Side Live Link:
-        https://ph-12-assign-meskat.web.app/
+<h1>PH Housing </h1>
+<hr/>
+<h3>Admin Email : meskat@gmail.com</h3>
+<h3>Admin password: 123456A$</h3>
+<h3>Agent email: agent@gmail.com</h3>
+<h3>Agent password: 123456A$</h3>
 
-
-
+<h1>Description</h1>
 <!-- About Project  5 points -->
 
 .User-Friendly Dashboards:
@@ -28,3 +31,11 @@ Provide agents with a user-friendly interface within their dashboard where they 
 .Admin Dashboard:
 
 admin dashboard should provide a comprehensive overview of the platform's activities. Admins should have the ability to manage user accounts, monitor agent activities, analyze user engagement. 
+
+Little bit description about this website:
+<ul>
+        <li>I use firebase for user authentication.</li>
+<li>I use mongodb for storing data.</li>
+<li>I put both admin and a normal user route.</li>
+<li>Only a logged in user or admin is allowed access the dashboard.</li>
+</ul>
